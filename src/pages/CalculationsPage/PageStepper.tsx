@@ -1,11 +1,19 @@
 import { Stepper, Step, StepLabel } from "@mui/material";
 import { useLocation } from "react-router-dom";
 
-const steps = ["Input Data", "Create Comparison Matrix", "Check results"];
+const steps = [
+  "Input Criteria & Alternatives",
+  "Create Comparison Matrixes",
+  "Check results",
+];
 
-export const PageStepper = () => {
+interface IPageStepper {
+  routes: Array<string>;
+}
+
+export const PageStepper: React.FC<IPageStepper> = ({ routes }) => {
   const { pathname } = useLocation();
-  const activeStep = pathname === "/" ? 0 : pathname === "/step2" ? 1 : 2;
+  const activeStep = routes.findIndex((route) => pathname === route);
 
   return (
     <Stepper

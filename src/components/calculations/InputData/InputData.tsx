@@ -1,7 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import { FormProvider, useForm } from "react-hook-form";
-import { Box, Button, Typography } from "@mui/material";
-import { Table } from "./Table";
+import { FormProvider, useForm, UseFormReturn } from "react-hook-form";
+import { Box } from "@mui/material";
+import { Title } from "../UI/Title";
+import { FormButtons } from "../UI/FormButtons";
+import { InputTable } from "./InputTable";
 import { DataField, useFormStore } from "@/store/useFormStore";
 
 type Data = {
@@ -9,36 +11,42 @@ type Data = {
   criteria: Array<DataField>;
 };
 
-export const InputData = () => {
+interface IInputData {
+  path: string;
+}
+
+export const InputData: React.FC<IInputData> = ({ path }) => {
   const { alternatives, criteria, setData } = useFormStore();
   const navigate = useNavigate();
 
-  const methods: any = useForm({
+  const methods: UseFormReturn<{
+    alternatives: DataField[];
+    criteria: DataField[];
+  }> = useForm({
     defaultValues: { alternatives, criteria },
   });
 
   const onSubmit = (data: Data) => {
     setData(data);
-    navigate("/step2");
+    navigate(path);
   };
 
   return (
-    <Box sx={{ m: 8, mt: 10 }}>
-      <Typography variant="h5">Input alternatives and criteria</Typography>
-      <Typography variant="subtitle2" sx={{ mt: 1 }}>
-        Please write your criteria and alternatives.
-      </Typography>
+    <Box sx={{ width: "85%", m: "auto" }}>
+      <Title
+        title={"Input Alternatives and Criteria"}
+        explain={`Write down from 2 to 15 criteria and 
+          alternatives for calculating promising technology`}
+      />
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
           <Box
             sx={{ display: { lg: "flex" }, justifyContent: "space-between" }}
           >
-            <Table name={"alternatives"} />
-            <Table name={"criteria"} />
+            <InputTable name={"alternatives"} />
+            <InputTable name={"criteria"} />
           </Box>
-          <Button type="submit" variant="outlined" size="large" sx={{ mt: 20 }}>
-            Next
-          </Button>
+          <FormButtons />
         </form>
       </FormProvider>
     </Box>

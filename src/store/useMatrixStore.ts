@@ -1,12 +1,12 @@
 import { create } from "zustand";
 
-export type CritMatrix = Array<Array<string>>;
-export type AltMatrixes = Array<Array<Array<string>>>;
+export type MatrixType = Array<string[]>;
+export type AltMatrixes = Array<MatrixType>;
 
 export interface IMatrixStore {
-  critMatrix: CritMatrix;
+  critMatrix: MatrixType;
   altMatrixes: AltMatrixes;
-  setData: (data: { critMatrix: CritMatrix; altMatrixes: AltMatrixes }) => void;
+  setData: (data: { critMatrix: MatrixType; altMatrixes: AltMatrixes }) => void;
 }
 
 export const useMatrixStore = create<IMatrixStore>((set) => ({
@@ -14,7 +14,7 @@ export const useMatrixStore = create<IMatrixStore>((set) => ({
   altMatrixes: [],
   loading: false,
   error: null,
-  setData: (data: { critMatrix: CritMatrix; altMatrixes: AltMatrixes }) => {
+  setData: (data: { critMatrix: MatrixType; altMatrixes: AltMatrixes }) => {
     set(data);
   },
 }));

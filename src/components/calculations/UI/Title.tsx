@@ -7,7 +7,7 @@ interface ITitle {
 
 export const Title: React.FC<ITitle> = ({ title, explain }) => {
   return (
-    <Box sx={{ mt: 9, mb: 10 }}>
+    <Box sx={{ mt: 7, mb: 7 }}>
       <Typography variant="h4">{title}</Typography>
       <Typography variant="subtitle1" sx={{ width: "45%", m: "auto", mt: 1 }}>
         {explain}

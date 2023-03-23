@@ -24,7 +24,7 @@ export const InputTable: React.FC<IInputTable> = ({ name }) => {
     ) {
       return (
         <Typography sx={{ color: "#d32f2f" }}>
-          The string must be more than 2 character and less than 31 characters
+          The string must be more than 2 character and less than 90 characters
         </Typography>
       );
     } else return "";

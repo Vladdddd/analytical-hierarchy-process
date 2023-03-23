@@ -7,12 +7,12 @@ import { MatrixTable } from "./MatrixTable";
 import { DataField, useFormStore } from "@/store/useFormStore";
 import {
   AltMatrixes,
-  CritMatrix,
+  MatrixType,
   useMatrixStore,
 } from "@/store/useMatrixStore";
 
 type Data = {
-  critMatrix: CritMatrix;
+  critMatrix: MatrixType;
   altMatrixes: AltMatrixes;
 };
 
@@ -27,7 +27,7 @@ export const Matrix: React.FC<IMatrix> = ({ path }) => {
   const navigate = useNavigate();
 
   const methods: UseFormReturn<{
-    critMatrix: CritMatrix;
+    critMatrix: MatrixType;
     altMatrixes: AltMatrixes;
   }> = useForm({
     defaultValues: { critMatrix, altMatrixes },
